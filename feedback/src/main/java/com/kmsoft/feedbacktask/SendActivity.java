@@ -31,7 +31,7 @@ public class SendActivity extends AppCompatActivity {
         send = findViewById(R.id.send);
 
         imageFIle = (File) getIntent().getSerializableExtra("ImageFIle");
-        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imageFIle);
+        Uri uri = FileProvider.getUriForFile(this,  "my.provider", imageFIle);
         sendImage.setImageURI(uri);
 
         send.setOnClickListener(new View.OnClickListener() {
