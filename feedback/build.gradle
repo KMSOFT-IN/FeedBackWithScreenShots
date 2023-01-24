@@ -3,6 +3,20 @@ plugins {
     id 'maven-publish'
 }
 
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.KMSOFT-IN'
+                artifactId = 'feedback'
+                version = '1.0.0'
+            }
+        }
+    }
+}
+
 android {
     namespace 'com.kmsoft.feedbacktask'
     compileSdk 33
