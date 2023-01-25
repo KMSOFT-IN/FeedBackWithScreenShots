@@ -6,6 +6,7 @@ import androidx.core.content.FileProvider;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -25,13 +26,17 @@ public class SendActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
 
+//        StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+//        StrictMode.setVmPolicy(builder.build());
+
         sendImage = findViewById(R.id.sendImage);
         feedback = findViewById(R.id.feedback);
         email = findViewById(R.id.email);
         send = findViewById(R.id.send);
 
         imageFIle = (File) getIntent().getSerializableExtra("ImageFIle");
-        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imageFIle);
+//        Uri uri = Uri.fromFile(imageFIle);
+        Uri uri = FileProvider.getUriForFile(this, "com.kmsoft.provider", imageFIle);
         sendImage.setImageURI(uri);
 
         send.setOnClickListener(new View.OnClickListener() {

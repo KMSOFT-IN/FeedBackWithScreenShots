@@ -5,12 +5,15 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.FileUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.Random;
 
 public class CaptureScreenShots {
@@ -20,7 +23,7 @@ public class CaptureScreenShots {
     private static boolean isSwipe;
     private static float startY, stopY;
     // We will only detect a swipe if the difference is at least 100 pixels
-    private static final int TRESHOLD = 100;
+    private static final int TRESHOLD = 50;
 
     public void handleTouch(Context context,MotionEvent m, View view){
         //Number of touches
@@ -67,7 +70,7 @@ public class CaptureScreenShots {
     }
 
     public void screenShot(Context context, View view) {
-        int randomNumber = Math.abs(new Random(2).nextInt());
+        int randomNumber = Math.abs(new Random(1).nextInt());
 
         try {
 
@@ -79,9 +82,11 @@ public class CaptureScreenShots {
 
             ContextWrapper cw = new ContextWrapper(context);
             File directory = cw.getDir("imageDir", Context.MODE_PRIVATE);
-            File imageFile = new File(directory, "ScreenShots_" + randomNumber + ".jpg");
+//            File imageFile = new File(directory, "ScreenShots_" + randomNumber + ".jpg");
+            File imageFile = File.createTempFile("ScreenShots_" + randomNumber , ".jpg", context.getExternalCacheDir());
             System.out.println("$$$$$$$$$$ " + imageFile.getPath());
-            if (!imageFile.exists()) {
+
+//            if (!imageFile.exists()) {
                 FileOutputStream fos = null;
                 try {
                     fos = new FileOutputStream(imageFile);
@@ -91,7 +96,7 @@ public class CaptureScreenShots {
                 } catch (java.io.IOException e) {
                     e.printStackTrace();
                 }
-            }
+//            }
 
             Intent intent = new Intent(context,SendActivity.class);
             intent.putExtra("ImageFIle",imageFile);
