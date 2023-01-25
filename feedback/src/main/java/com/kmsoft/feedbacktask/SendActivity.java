@@ -36,7 +36,7 @@ public class SendActivity extends AppCompatActivity {
 
         imageFIle = (File) getIntent().getSerializableExtra("ImageFIle");
 //        Uri uri = Uri.fromFile(imageFIle);
-        Uri uri = FileProvider.getUriForFile(this, "com.kmsoft.provider", imageFIle);
+        Uri uri = FileProvider.getUriForFile(this, getApplicationContext().getPackageName() + ".provider", imageFIle);
         sendImage.setImageURI(uri);
 
         send.setOnClickListener(new View.OnClickListener() {

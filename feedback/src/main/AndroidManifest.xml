@@ -15,8 +15,8 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.kmsoft.provider"
-            android:exported="false"
+            android:authorities="${applicationId}.provider"
+            android:exported="true"
             android:grantUriPermissions="true">
             <!-- ressource file to create -->
             <meta-data
