@@ -28,11 +28,10 @@ dependencies {
 
 after add dependencies add code like this :
 ```sh
-view.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                new CaptureScreenShots().handleTouch(HomeActivity.this,motionEvent,view);
-                return true;
-            }
-        });
+Your all activity extend BaseActivity
+
+public class MainActivity extends BaseActivity {
+
+'''
+}
 ```
