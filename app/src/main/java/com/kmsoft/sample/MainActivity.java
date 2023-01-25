@@ -1,17 +1,20 @@
 package com.kmsoft.sample;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.annotation.SuppressLint;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.kmsoft.feedbacktask.BaseActivity;
 import com.kmsoft.feedbacktask.CaptureScreenShots;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     RelativeLayout mainLayout;
 
@@ -23,13 +26,12 @@ public class MainActivity extends AppCompatActivity {
 
         mainLayout = findViewById(R.id.mainLayout);
 
-        mainLayout.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                new CaptureScreenShots().handleTouch(MainActivity.this,motionEvent,view);
-                return true;
-            }
-        });
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.mainLayout,new BlankFragment());
+        transaction.addToBackStack(null);
+        transaction.commit();
 
     }
+
+
 }

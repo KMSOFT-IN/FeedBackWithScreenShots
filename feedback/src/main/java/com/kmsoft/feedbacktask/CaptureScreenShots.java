@@ -5,25 +5,20 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.os.FileUtils;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.util.Random;
 
 public class CaptureScreenShots {
 
-    private static final int NONE = 0;
-    private static final int SWIPE = 1;
     private static boolean isSwipe;
     private static float startY, stopY;
-    // We will only detect a swipe if the difference is at least 100 pixels
-    private static final int TRESHOLD = 50;
+    private static final int THRESHOLD = 50;
 
     public void handleTouch(Context context,MotionEvent m, View view){
         //Number of touches
@@ -42,7 +37,7 @@ public class CaptureScreenShots {
                 case MotionEvent.ACTION_POINTER_UP:
                     // This happens when you release the second finger
                     isSwipe = false;
-                    if(Math.abs(startY - stopY) > TRESHOLD)
+                    if(Math.abs(startY - stopY) > THRESHOLD)
                     {
                         System.out.println("startY : " + startY);
                         System.out.println("stopY : " + stopY);
