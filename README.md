@@ -22,7 +22,7 @@ Step 2. Add the dependency
 
 ```sh
 dependencies {
-	        implementation 'com.github.KMSOFT-IN:FeedBackWithScreenShots:1.0.2'
+	        implementation 'com.github.KMSOFT-IN:FeedBackWithScreenShots:1.0.3'
 	}
 ```
 
